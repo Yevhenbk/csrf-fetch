@@ -1,4 +1,4 @@
-# Csrf Protection Django
+# CSRF Protection Django
 
 ## Overview
 Although implementing authentication in Next.js directly considered good practice and you may benefit from generating JWT tokens and storing them securely in HTTP-only cookies, which would simplify 
