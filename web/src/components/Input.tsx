@@ -1,10 +1,10 @@
-import React from "react"
+import React from "react";
 
 interface InputProps {
   type: "text" | "password",
   name: string,
   placeholder: string
-}
+};
 
 const Input: React.FC<InputProps> = ({
   type,
@@ -21,6 +21,6 @@ const Input: React.FC<InputProps> = ({
       py-2 px-4 font-medium"
     />
   )
-}
+};
 
-export default Input
+export default Input;

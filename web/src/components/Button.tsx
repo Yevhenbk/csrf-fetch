@@ -5,7 +5,7 @@ interface ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>,
   arialLabel: string,
   type: "submit" | "reset" | "button" | undefined
-}
+};
 
 const Button: React.FC<ButtonProps> = ({
   children,
@@ -19,11 +19,12 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       aria-label={arialLabel}
       className="bg-blue-700 text-white font-medium
-      text-lg py-2 px-6 rounded-md hover:bg-blue-800"
+      text-lg py-2 px-6 rounded-md hover:bg-blue-800
+      w-[17.25rem]"
     >
       {children}
     </button>
   )
-}
+};
 
-export default Button
+export default Button;

@@ -10,7 +10,7 @@ import Input from "../Input";
 
 interface LoginFormProps {
   login: AuthProps
-}
+};
 
 const LoginForm: React.FC<LoginFormProps> = ({ login }) => {
   const { setUser } = useAuthContext();
@@ -36,10 +36,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ login }) => {
         type="submit"
         arialLabel="Submit Form"
       >
-        Submit
+        Log In
       </Button>
     </form>
-  );
+  )
 };
 
 export default LoginForm;

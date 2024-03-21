@@ -5,6 +5,8 @@ import LoginForm from "../components/Auth/LoginForm";
 // import SignUpForm from "@/components/SignUpForm";
 import { login } from "@/actions/actions";
 import { useAuthContext } from "@/store/AuthContext";
+import ViewWrapper from "@/components/ViewWrapper";
+import GuestUserButtons from "@/components/Auth/GuestUserButtons";
 import { redirect } from "next/navigation";
 
 const Home: NextPage = () => {
@@ -15,16 +17,9 @@ const Home: NextPage = () => {
   // };
 
   return (
-    <main 
-      className="flex items-center justify-center h-[100dvh]
-      w-full"
-    >
-      <LoginForm
-        login={login} 
-      />
-      {/* <button onClick={() => console.log(user)}>eqdqfqw</button> */}
-      {/* <SignUpForm /> */}
-    </main>
+    <ViewWrapper>
+      <GuestUserButtons />
+    </ViewWrapper>  
   )
 };
 

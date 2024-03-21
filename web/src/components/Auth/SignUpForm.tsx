@@ -1,35 +1,50 @@
-// "use client"
+"use client"
 
-// import React from "react";
-// import useCsrfToken from "@/hooks/useCsrfToken";
-// import { handleSignUpSubmit } from "@/actions/actions";
+import React from "react";
+import { useAuthContext } from "@/store/AuthContext";
+import useCsrfToken from "@/hooks/useCsrfToken";
+import { AuthProps } from "@/types/auth";
+import { baseUrl } from "@/constants/constants";
+import Button from "../Button";
+import Input from "../Input";
 
-// const SignUpForm = () => {
-//   const csrfToken = useCsrfToken("http://localhost:8000/csrf/");
-//   const handleSignUpWithCsrf = handleSignUpSubmit.bind(null, csrfToken);
+interface SignUpFormProps {
+  signup: AuthProps
+};
 
-//   return (
-//     <form action={handleSignUpWithCsrf}>
-//       <input
-//         type="text"
-//         name="username"
-//         placeholder="Username"
-//       />
-//       <input
-//         type="password"
-//         name="password1"
-//         placeholder="Password"
-//       />
-//       <input
-//         type="password"
-//         name="password2"
-//         placeholder="Password"
-//       />
-//       <button type="submit">
-//         Sign Up
-//       </button>
-//     </form>
-//   );
-// };
+const SignUpForm: React.FC<SignUpFormProps> = ({ signup }) => {
+  const { setUser } = useAuthContext();
+  const csrfToken = useCsrfToken(`${baseUrl}csrf/`);
+  const handleSignUp = signup.bind(null, csrfToken, setUser);
 
-// export default SignUpForm;
+  return (
+    <form 
+      action={handleSignUp}
+      className="flex flex-col gap-4"
+    >
+      <Input
+        type="text"
+        name="username"
+        placeholder="Username"
+      />
+      <Input
+        type="password"
+        name="password1"
+        placeholder="Password"
+      />
+      <Input
+        type="password"
+        name="password2"
+        placeholder="Password"
+      />
+      <Button
+        type="submit"
+        arialLabel="Submit Form"
+      >
+        Sugn Up
+      </Button>
+    </form>
+  )
+};
+
+export default SignUpForm;
