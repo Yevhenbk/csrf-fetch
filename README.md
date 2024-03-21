@@ -7,8 +7,8 @@ setting up authentication endpoints and managing user sessions on a backend serv
 Next.js?
 
 In this simple example we set up basic authentication methods with CSRF protection in django, after which, as mentioned previously, we handle CORS via fetching CSRF token from our server and storing its 
-value in a browser cookie header that later we will use to send requests and perform authentication operations on the client; for this, we will use an alternative to server actions in Next 14, while keeping 
-server over client hierarchy.
+value in a browser cookie header that later we will use to send requests and perform authentication operations on the client; for this, we will use Next 14 server actions and custom hooks, while running 
+our application on the client.
 
 ## Technologies Used
 - Django
