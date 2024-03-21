@@ -2,11 +2,22 @@
 
 import React from "react";
 import useCsrfToken from "@/hooks/useCsrfToken";
-import { handleLoginSubmit } from "@/actions/client/actions";
+import { UserStateData } from "@/types/userData";
+import { AuthProps } from "@/types/auth";
 
-const LoginForm = () => {
+interface LoginFormProps {
+  user: UserStateData,
+  setUser: React.Dispatch<React.SetStateAction<UserStateData>>,
+  login: AuthProps
+}
+
+const LoginForm: React.FC<LoginFormProps> = ({ 
+  user,
+  setUser,
+  login 
+}) => {
   const csrfToken = useCsrfToken("http://localhost:8000/csrf/");
-  const handleLoginWithCsrf = handleLoginSubmit.bind(null, csrfToken);
+  const handleLoginWithCsrf = login.bind(null, csrfToken, setUser);
 
   return (
     <form action={handleLoginWithCsrf}>
@@ -23,6 +34,7 @@ const LoginForm = () => {
       <button type="submit">
         Login
       </button>
+      <button onClick={() => console.log(user)}>eqdqfqw</button>
     </form>
   );
 };
