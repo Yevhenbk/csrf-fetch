@@ -1,28 +1,30 @@
-// useData.js
-import { useState, useEffect } from 'react';
+import React from "react";
+import { useAuthContext } from "@/store/AuthContext";
 
 const useCsrfToken = (url: string) => {
-  const [csrfToken, setCsrfToken] = useState("");
+  const { user, setUser } = useAuthContext();
 
-  useEffect(() => {
+  React.useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     try {
       const response = await fetch(url, {
-        method: 'GET',
-        credentials: 'include',
+        method: "GET",
+        credentials: "include",
       })
-      const data = await response.json()
-      setCsrfToken(data.csrfToken)
-      console.log(csrfToken)
+      const data = await response.json();
+      setUser(prevState => ({
+        ...prevState,
+        csrfToken: data.csrfToken,
+      }))
     } catch (error) {
-      console.error('Error fetching CSRF token:', error)
+      console.error("Error fetching CSRF token:", error)
     }
   };
 
-  return csrfToken;
+  return user.csrfToken;
 };
 
 export default useCsrfToken;

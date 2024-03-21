@@ -1,26 +1,22 @@
 "use client"
 
 import React from "react";
+import { useAuthContext } from "@/store/AuthContext";
 import useCsrfToken from "@/hooks/useCsrfToken";
-import { UserStateData } from "@/types/userData";
 import { AuthProps } from "@/types/auth";
+import { baseUrl } from "@/constants/constants";
 
 interface LoginFormProps {
-  user: UserStateData,
-  setUser: React.Dispatch<React.SetStateAction<UserStateData>>,
   login: AuthProps
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ 
-  user,
-  setUser,
-  login 
-}) => {
-  const csrfToken = useCsrfToken("http://localhost:8000/csrf/");
-  const handleLoginWithCsrf = login.bind(null, csrfToken, setUser);
+const LoginForm: React.FC<LoginFormProps> = ({ login }) => {
+  const { setUser } = useAuthContext();
+  const csrfToken = useCsrfToken(`${baseUrl}csrf/`);
+  const handleLogin = login.bind(null, csrfToken, setUser);
 
   return (
-    <form action={handleLoginWithCsrf}>
+    <form action={handleLogin}>
       <input
         type="text"
         name="username"
@@ -34,7 +30,6 @@ const LoginForm: React.FC<LoginFormProps> = ({
       <button type="submit">
         Login
       </button>
-      <button onClick={() => console.log(user)}>eqdqfqw</button>
     </form>
   );
 };
