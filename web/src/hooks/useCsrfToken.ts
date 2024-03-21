@@ -1,10 +1,9 @@
-import React from "react";
-import { useAuthContext } from "@/store/AuthContext";
+import { useState, useEffect } from "react";
 
 const useCsrfToken = (url: string) => {
-  const { user, setUser } = useAuthContext();
+  const [csrfToken, setCsrfToken] = useState("");
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -14,17 +13,15 @@ const useCsrfToken = (url: string) => {
         method: "GET",
         credentials: "include",
       })
-      const data = await response.json();
-      setUser(prevState => ({
-        ...prevState,
-        csrfToken: data.csrfToken,
-      }))
+      const data = await response.json()
+      setCsrfToken(data.csrfToken)
+      console.log(csrfToken)
     } catch (error) {
       console.error("Error fetching CSRF token:", error)
     }
   };
 
-  return user.csrfToken;
+  return csrfToken;
 };
 
 export default useCsrfToken;

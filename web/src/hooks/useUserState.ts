@@ -9,7 +9,8 @@ export const useUserState = (): [
     username: "",
     password: "",
     csrfToken: "",
-  isLoggedIn: null
+    isLoggedIn: null,
+    isLoading: true
   })
 
   return [user, setUser]

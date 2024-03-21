@@ -3,4 +3,5 @@ export interface UserStateData {
   password: string;
   csrfToken: string;
   isLoggedIn: boolean | null;
+  isLoading: boolean;
 };

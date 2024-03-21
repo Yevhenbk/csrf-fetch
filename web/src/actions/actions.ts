@@ -4,8 +4,13 @@ import { baseUrl } from "@/constants/constants";
 export const login: AuthProps = async (
   csrfToken, 
   setUser,
+  router,
   formData
 ) => {
+  setUser(prevState => ({
+    ...prevState,
+    isLoading: true
+  }))
   try {
     const response = await fetch(`${baseUrl}login/`, {
       method: "POST",
@@ -17,9 +22,11 @@ export const login: AuthProps = async (
     })
     const data = await response.json();
     if (data.success) {
+      router.push("/");
       setUser(prevState => ({
         ...prevState,
-        isLoggedIn: true,
+        isLoggedIn: data.isLoggedIn,
+        isLoading: false
       }))
     }
   } catch (error) {
@@ -30,8 +37,13 @@ export const login: AuthProps = async (
 export const signup: AuthProps = async (
   csrfToken, 
   setUser,
+  router,
   formData
 ) => {
+  setUser(prevState => ({
+    ...prevState,
+    isLoading: true
+  }))
   try {
     const response = await fetch(`${baseUrl}signup/`, {
       method: "POST",
@@ -45,7 +57,8 @@ export const signup: AuthProps = async (
     if (data.success) {
       setUser(prevState => ({
         ...prevState,
-        isLoggedIn: true,
+        isLoggedIn: data.isLoggedIn,
+        isLoading: false
       }))
     } 
   } catch (error) {
@@ -57,6 +70,10 @@ export const logout: AuthProps = async (
   csrfToken, 
   setUser
 ) => {
+  setUser(prevState => ({
+    ...prevState,
+    isLoading: true
+  }))
   try {
     const response = await fetch(`${baseUrl}logout/`, {
       method: "POST",
@@ -65,11 +82,15 @@ export const logout: AuthProps = async (
       },
       credentials: "include",
     })
-    await response.json();
-    setUser(prevState => ({
-      ...prevState,
-      isLoggedIn: false,
-    }))
+    const data = await response.json();
+    console.log(data)
+    if (data.success) {
+      setUser(prevState => ({
+        ...prevState,
+        isLoggedIn: data.isLoggedIn,
+        isLoading: false
+      }))
+    } 
   } catch (error) {
     console.error("Error logging out:", error)
   }

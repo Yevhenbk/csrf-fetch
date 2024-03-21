@@ -19,16 +19,22 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [user, setUser] = useUserState();
 
   const checkLoginStatus = async () => {
+    setUser(prevState => ({
+      ...prevState,
+      isLoading: true
+    }))
     try {
       const response = await fetch(`http://localhost:8000/check-login-status/`, {
         method: "GET",
         credentials: "include", 
       })
-      const data = await response.json()
+      const data = await response.json();
       setUser(prevState => ({
         ...prevState,
         isLoggedIn: data.isLoggedIn,
+        isLoading: false
       }))
+      console.log(data.isLoggedIn)
     } catch (error) {
       console.error("Error checking login status:", error)
     }
@@ -37,6 +43,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   React.useEffect(() => {
     checkLoginStatus();
   },[]);
+
+  if (user.isLoading) return <p>Loading...</p>
 
   return (
     <AuthContext.Provider
