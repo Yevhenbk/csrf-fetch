@@ -53,24 +53,24 @@ export const signup: AuthProps = async (
   }
 };
 
-// const logout = async () => {
-//   try {
-//     const response = await fetch(`${baseUrl}logout/`, {
-//       method: 'POST',
-//       headers: {
-//         'X-CSRFToken': user.csrfToken,
-//       },
-//       credentials: 'include',
-//     })
-//     const data = await response.json()
-//     setUser(prevState => ({
-//       ...prevState,
-//       isLoggedIn: data.isLoggedIn,
-//     }))
-//     fetchChats()
-//     push('/')
-//     setLoading(false)
-//   } catch (error) {
-//     console.error('Error logging out:', error)
-//   }
-// }
+export const logout: AuthProps = async (
+  csrfToken, 
+  setUser
+) => {
+  try {
+    const response = await fetch(`${baseUrl}logout/`, {
+      method: "POST",
+      headers: {
+        "X-CSRFToken": csrfToken,
+      },
+      credentials: "include",
+    })
+    await response.json();
+    setUser(prevState => ({
+      ...prevState,
+      isLoggedIn: false,
+    }))
+  } catch (error) {
+    console.error("Error logging out:", error)
+  }
+}

@@ -5,6 +5,6 @@ export interface AuthProps {
   (
     csrfToken: string, 
     setUser: Dispatch<SetStateAction<UserStateData>>, 
-    formData: FormData
+    formData?: FormData
   ): Promise<void>;
 };

@@ -1,7 +1,7 @@
 "use client"
 
 import { NextPage } from "next";
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/Auth/LoginForm";
 // import SignUpForm from "@/components/SignUpForm";
 import { login } from "@/actions/actions";
 import { useAuthContext } from "@/store/AuthContext";
@@ -16,8 +16,8 @@ const Home: NextPage = () => {
 
   return (
     <main 
-      className="flex min-h-screen flex-col items-center 
-      justify-between p-24"
+      className="flex items-center justify-center h-[100dvh]
+      w-full"
     >
       <LoginForm
         login={login} 
