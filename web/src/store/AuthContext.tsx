@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react";
-import { PulseLoader } from "react-spinners";
+import { MoonLoader } from "react-spinners";
 import { useUserState } from "@/hooks/useUserState";
 import { UserStateData } from "@/types/userData";
 import { baseUrl } from "@/constants/constants";
@@ -32,7 +32,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   if (user.isLoading) return (
     <div className="h-[100dvh] w-full flex justify-center items-center">
-      <PulseLoader color="rgb(29 78 216)" size={10} />
+      <MoonLoader color="rgb(29 78 216)" size={30} />
     </div>
   );
 
