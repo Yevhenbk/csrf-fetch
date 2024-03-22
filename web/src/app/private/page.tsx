@@ -7,13 +7,12 @@ import { logout } from "@/actions/actions";
 import { baseUrl } from "@/constants/constants";
 import useCsrfToken from "@/hooks/useCsrfToken";
 import Button from "@/components/Button";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const Private: NextPage = () => {
   const { user, setUser } = useAuthContext();
-  const router = useRouter();
   const csrfToken = useCsrfToken(`${baseUrl}csrf/`);
-  const handleLogout = logout.bind(null, csrfToken, setUser, router);
+  const handleLogout = logout.bind(null, csrfToken, setUser);
 
   if(!user.isLoggedIn) {
     redirect("/")

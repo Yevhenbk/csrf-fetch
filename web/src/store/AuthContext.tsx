@@ -1,8 +1,10 @@
 "use client"
 
 import React from "react";
+import { PulseLoader } from "react-spinners";
 import { useUserState } from "@/hooks/useUserState";
 import { UserStateData } from "@/types/userData";
+import { baseUrl } from "@/constants/constants";
 
 type checkLoginStatusProps = {
   (
@@ -28,7 +30,11 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     checkLoginStatus(setUser);
   },[]);
 
-  if (user.isLoading) return <p>Loading...</p>
+  if (user.isLoading) return (
+    <div className="h-[100dvh] w-full flex justify-center items-center">
+      <PulseLoader color="rgb(29 78 216)" size={10} />
+    </div>
+  );
 
   return (
     <AuthContext.Provider
@@ -59,7 +65,7 @@ export const checkLoginStatus: checkLoginStatusProps = async (setUser) => {
     isLoading: true
   }))
   try {
-    const response = await fetch(`http://localhost:8000/check-login-status/`, {
+    const response = await fetch(`${baseUrl}check-login-status/`, {
       method: "GET",
       credentials: "include", 
     })
