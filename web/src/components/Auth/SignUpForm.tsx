@@ -7,7 +7,6 @@ import { AuthProps } from "@/types/auth";
 import { baseUrl } from "@/constants/constants";
 import Button from "../Button";
 import Input from "../Input";
-import { useRouter } from "next/navigation";
 
 interface SignUpFormProps {
   signup: AuthProps
@@ -15,9 +14,8 @@ interface SignUpFormProps {
 
 const SignUpForm: React.FC<SignUpFormProps> = ({ signup }) => {
   const { setUser } = useAuthContext();
-  const router = useRouter();
   const csrfToken = useCsrfToken(`${baseUrl}csrf/`);
-  const handleSignUp = signup.bind(null, csrfToken, setUser, router);
+  const handleSignUp = signup.bind(null, csrfToken, setUser);
 
   return (
     <form 

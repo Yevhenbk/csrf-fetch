@@ -1,10 +1,10 @@
 import { AuthProps } from "@/types/auth";
 import { baseUrl } from "@/constants/constants";
+import { checkLoginStatus } from "@/store/AuthContext";
 
 export const login: AuthProps = async (
   csrfToken, 
   setUser,
-  router,
   formData
 ) => {
   setUser(prevState => ({
@@ -22,12 +22,12 @@ export const login: AuthProps = async (
     })
     const data = await response.json();
     if (data.success) {
-      router.push("/");
       setUser(prevState => ({
         ...prevState,
         isLoggedIn: data.isLoggedIn,
         isLoading: false
-      }))
+      }));
+      checkLoginStatus(setUser);
     }
   } catch (error) {
     console.error("Error logging in:", error)
@@ -37,7 +37,6 @@ export const login: AuthProps = async (
 export const signup: AuthProps = async (
   csrfToken, 
   setUser,
-  router,
   formData
 ) => {
   setUser(prevState => ({
@@ -59,7 +58,8 @@ export const signup: AuthProps = async (
         ...prevState,
         isLoggedIn: data.isLoggedIn,
         isLoading: false
-      }))
+      }));
+      checkLoginStatus(setUser);
     } 
   } catch (error) {
     console.error("Error logging in:", error)
@@ -83,15 +83,15 @@ export const logout: AuthProps = async (
       credentials: "include",
     })
     const data = await response.json();
-    console.log(data)
     if (data.success) {
       setUser(prevState => ({
         ...prevState,
         isLoggedIn: data.isLoggedIn,
         isLoading: false
-      }))
+      }));
+      checkLoginStatus(setUser);
     } 
   } catch (error) {
     console.error("Error logging out:", error)
   }
-}
+};
