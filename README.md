@@ -17,7 +17,7 @@ declaring "use client" and not is that in the case of the first the component ge
 where it gets hydrated. In the case of not using client, the component gets executed on the server where the resulting data is embedded into the HTML as JSON format so the React Renderer can render it. Its 
 JavaScript is NOT sent to the client so it does not get hydrated and is, therefore, not interactive.
 
-To sum up, using or not using client only changes the way for you to write code: either it is the new way of fetching using server or the old-fashioned Next 12 kind of with state management.
+To sum up, using or not using client only changes the way for you to write code: either it is the new way of fetching via server or the old-fashioned Next 12 kind of with state management.
 
 ## Technologies Used
 - Django
