@@ -24,3 +24,17 @@ To sum up, using or not using client only changes the way for you to write code:
 - Django REST Framework
 - Requests library
 - Next 14
+
+## Setup Instructions
+
+> To start the app run this command inside the project
+
+```bash
+#on the server
+python manage.py migrate
+python manage.py runserver
+
+#on the client
+npm install
+npm run dev
+```
