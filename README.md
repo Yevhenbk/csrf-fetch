@@ -29,12 +29,17 @@ To sum up, using or not using client only changes the way for you to write code:
 
 > To start the app run this command inside the project
 
+> On the server
+
 ```bash
-#on the server
+pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
+```
 
-#on the client
+> On the client
+
+```bash
 npm install
 npm run dev
 ```
