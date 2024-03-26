@@ -27,7 +27,7 @@ To sum up, using or not using client only changes the way for you to write code:
 
 ## Setup Instructions
 
-> To start the app run this command inside the project
+To start the app run these commands inside the project
 
 > On the server
 
