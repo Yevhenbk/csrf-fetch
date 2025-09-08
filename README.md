@@ -9,15 +9,14 @@ Next.js?
 In this simple example we set up basic authentication methods with CSRF protection in django, after which, as mentioned previously, we handle CORS via fetching CSRF token from our server and storing its 
 value in a browser cookie header that later will be used to send requests and perform authentication operations on the client; for this, we will use Next 14 server actions, AuthContext, and custom hooks.
 
-### Important!
 
-In this example, we will be using store management along with custom hooks that involve useState & useEffect, meaning the application has to be switched to "use client". However, since the release, many 
-people confuse client components with client-side rendering (CSR) and try to avoid using them while maintaining the server-over-client hierarchy. This is a misunderstanding, since the difference between 
-declaring "use client" and not is that in the case of the first the component gets prerendered with SSR or ISR/SSG if possible on the server; the HTML & JavaScript are being sent to the client and that's 
-where it gets hydrated. In the case of not using client, the component gets executed on the server where the resulting data is embedded into the HTML as JSON format so the React Renderer can render it. Its 
-JavaScript is NOT sent to the client so it does not get hydrated and is, therefore, not interactive.
+> In this example, we use store management and custom hooks (with useState & useEffect) to manage authentication and > CSRF tokens. This requires certain components to be marked with "use client" at the top. 
 
-To sum up, using or not using client only changes the way for you to write code: either it is the new way of fetching via server or the old-fashioned Next 12 kind of with state management.
+> It's important to note that "use client" does not mean the component is only rendered on the client. Components with "use client" can still be server-side rendered (SSR, ISR, or SSG) by Next.js, and then hydrated on the client for interactivity. The key difference is that client components can use React state, effects, and browser APIs, while server components cannot.
+
+> If you do not use "use client", your component is a server component: it runs only on the server, cannot use React state or effects, and is sent to the browser as static HTML/JSON with no interactivity or hydration.
+
+> In summary: use "use client" for components that need interactivity, state, or browser APIs (like authentication and CSRF handling). Use server components for static or data-fetching logic that does not depend on the browser or user input.
 
 ## Technologies Used
 - Django

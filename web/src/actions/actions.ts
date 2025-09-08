@@ -60,9 +60,14 @@ export const signup: AuthProps = async (
         isLoading: false
       }));
       checkLoginStatus(setUser);
-    } 
+    } else {
+      // Log backend errors for debugging
+      console.error("Signup error:", data.errors || data.message);
+      alert("Signup failed: " + (data.message || JSON.stringify(data.errors)));
+    }
   } catch (error) {
-    console.error("Error logging in:", error)
+    console.error("Error signing up:", error)
+    alert("Signup failed: " + error);
   }
 };
 
