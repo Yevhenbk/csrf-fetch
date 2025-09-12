@@ -1,6 +1,5 @@
 "use client"
 
-import { NextPage } from "next";
 import { useAuthContext } from "@/store/AuthContext";
 import ViewWrapper from "@/components/ViewWrapper";
 import { logout } from "@/actions/actions";
@@ -9,7 +8,7 @@ import useCsrfToken from "@/hooks/useCsrfToken";
 import Button from "@/components/Button";
 import { redirect } from "next/navigation";
 
-const Private: NextPage = () => {
+const Private = () => {
   const { user, setUser } = useAuthContext();
   const csrfToken = useCsrfToken(`${baseUrl}csrf/`);
   const handleLogout = logout.bind(null, csrfToken, setUser);

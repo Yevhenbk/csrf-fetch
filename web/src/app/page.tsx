@@ -1,12 +1,11 @@
 "use client"
 
-import { NextPage } from "next";
 import { useAuthContext } from "@/store/AuthContext";
 import ViewWrapper from "@/components/ViewWrapper";
 import GuestUserButtons from "@/components/Auth/GuestUserButtons";
 import { redirect } from "next/navigation";
 
-const Home: NextPage = () => {
+const Home = () => {
   const { user } = useAuthContext();
 
   if(user.isLoggedIn) {
