@@ -16,9 +16,8 @@ const Input: React.FC<InputProps> = ({
       type={type}
       name={name}
       placeholder={placeholder}
-      className="rounded-md text-lg text-gray-700 
-      bg-gray-100 focus:bg-gray-200 outline-none
-      py-2 px-4 font-medium"
+      className="bg-white/35 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full focus:bg-white/55
+      font-normal text-lg flex items-center gap-2 shadow-lg w-[17.25rem] outline-none placeholder:text-white/70"
     />
   )
 };
