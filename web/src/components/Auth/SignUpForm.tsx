@@ -41,7 +41,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ signup }) => {
         type="submit"
         arialLabel="Submit Form"
       >
-        Sugn Up
+        Sign Up
       </Button>
     </form>
   )
